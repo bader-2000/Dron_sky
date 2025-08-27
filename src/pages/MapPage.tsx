@@ -1,14 +1,16 @@
 import React from "react";
 import Map from "../components/Map";
-import Sidebar from "../components/Sidebar";
 
 const MapPage: React.FC = () => {
   return (
     <div className="flex h-screen">
-      <Sidebar />
+      <center>
+        {" "}
+        <h1>Map </h1>{" "}
+      </center>
       <Map />
     </div>
   );
 };
 
-export default MapPage; // فقط تصدير واحد
+export default MapPage;
