@@ -37,7 +37,6 @@ function App() {
               <Route path="/settings" element={<DashboardPage />} />
             </Routes>
           </main>
-          <Footer /> {/* Footer at the bottom */}
         </div>
       </div>
     </BrowserRouter>
