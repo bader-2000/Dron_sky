@@ -26,3 +26,9 @@ export const useDroneStore = create<DroneStore>((set) => ({
       ),
     })),
 }));
+
+export interface Drone {
+  id: string;
+  name: string;
+  registration: string;
+}
