@@ -1,17 +1,10 @@
-// src/components/drone/DronePanel.tsx
-
 import React from "react";
-import "./DronePanel.css";
-
-interface Drone {
-  id: string;
-  name: string;
-  registration: string;
-}
+import "../assets/styles/DronePanel.css";
+import type { Drone } from "../utils/droneTypesData";
 
 interface Props {
   drones: Drone[];
-  selectedDroneId: number;
+  selectedDroneId: string | null;
   handleListClick: (drone: Drone) => void;
   getDroneStatusColor: (reg: string) => "green" | "red";
   onClose: () => void;
@@ -41,18 +34,18 @@ const DronePanel: React.FC<Props> = ({
       <ul className="drone-list">
         {drones.map((drone) => (
           <li
-            key={drone.id}
+            key={drone.registration}
             className={`drone-item ${
-              selectedDroneId === drone.id ? "active" : ""
+              selectedDroneId === drone.registration ? "active" : ""
             }`}
             onClick={() => handleListClick(drone)}
           >
             <h4>{drone.name}</h4>
 
-            <div className="details-grid">
+            <div className="row-block">
               <div className="detail-block">
                 <label>Serial #</label>
-                <span>{drone.id}</span>
+                <span>{drone.serial}</span>
               </div>
 
               <div className="detail-block status-cell">
@@ -63,18 +56,20 @@ const DronePanel: React.FC<Props> = ({
                     className={`status-dot ${getDroneStatusColor(
                       drone.registration
                     )}`}
-                  ></span>
+                  />
                 </span>
               </div>
+            </div>
 
+            <div className="row-block">
               <div className="detail-block">
                 <label>Pilot</label>
-                <span>Basem Hamad</span>
+                <span>{drone.pilot}</span>
               </div>
 
               <div className="detail-block">
                 <label>Organization</label>
-                <span>Sager Drone</span>
+                <span>{drone.organization}</span>
               </div>
             </div>
           </li>
