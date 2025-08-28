@@ -14,6 +14,7 @@ import DronePath from "../components/DronePath";
 import DronePopup from "../components/DronePopup";
 
 import "../assets/styles/Map.css";
+import "../assets/styles/TogglePanelButton.css";
 
 export default function MapPage() {
   const [drones, setDrones] = useState<Drone[]>([]);

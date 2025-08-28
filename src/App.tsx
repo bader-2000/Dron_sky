@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Sidebar from "./shared/sidebar";
-import Footer from "./shared/footer";
 import MapPage from "./pages/MapPage";
 import DashboardPage from "./pages/DashboardPage";
 import Header from "./shared/headar";
