@@ -1,0 +1,64 @@
+/* Main container for the dashboard page */
+.dashboard-container {
+  padding: 10px 20px 50px 20px;
+  max-width: 1370px;
+  background-color: black;
+  color: white;
+
+  overflow-y: auto; /* Allow vertical scrolling if needed */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  box-sizing: border-box; /* Include padding inside the size */
+  font-family: Arial, sans-serif;
+}
+
+/* Statistics text section */
+.stats {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+/* Filter dropdown and refresh button section */
+.filter-section {
+  margin-bottom: 20px;
+}
+
+/* Dropdown for selecting drone */
+.select {
+  padding: 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: none;
+  background-color: #2c2c3e;
+  color: white;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #646cffaa;
+}
+
+/* Refresh button styling */
+.refresh-button {
+  padding: 8px 16px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover {
+  background-color: #666;
+}
+
+/* Wrapper around the chart to style its container */
+.chart-wrapper {
+  margin-top: -11px;
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}

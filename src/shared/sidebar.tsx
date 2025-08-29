@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaCog } from "react-icons/fa";
-import "./Sidebar.css";
+import "../assets/Styles/sidebar.css";
 
 const Sidebar = () => {
   return (

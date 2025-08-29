@@ -1,19 +1,10 @@
+// useWebSocket.ts
 import { useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-
-type DroneData = {
-  id: number;
-  name: string;
-  registration: string;
-  lat: number;
-  lon: number;
-  yaw: number;
-  altitude: number;
-  flightTime: string;
-};
+import type { Drone } from "../utils/droneTypesData";
 
 type UseWebSocketProps = {
-  onMessage: (data: DroneData) => void;
+  onMessage: (data: Drone | Drone[]) => void;
 };
 
 export function useWebSocket({ onMessage }: UseWebSocketProps) {
@@ -26,15 +17,17 @@ export function useWebSocket({ onMessage }: UseWebSocketProps) {
     });
 
     socket.on("connect", () => {
-      console.log("Socket.IO Connected");
+      console.log("✅ Socket.IO Connected");
     });
 
     socket.on("message", (data: any) => {
-      onMessage(data);
+      console.log("ق WebSocket message received:", data);
+
+      onMessage(data as Drone | Drone[]);
     });
 
     socket.on("disconnect", () => {
-      console.log("Socket.IO Disconnected");
+      console.log(" Socket.IO Disconnected");
     });
 
     return () => {

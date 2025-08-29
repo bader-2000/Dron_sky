@@ -5,6 +5,7 @@ import Sidebar from "./shared/sidebar";
 import MapPage from "./pages/MapPage";
 import DashboardPage from "./pages/DashboardPage";
 import Header from "./shared/headar";
+import Settings from "./pages/settings";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
 
               {/* Settings page */}
-              <Route path="/settings" element={<DashboardPage />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </main>
         </div>

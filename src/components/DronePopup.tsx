@@ -1,6 +1,6 @@
 import { Popup } from "react-map-gl";
 import type { Drone } from "../utils/droneTypesData";
-
+import "../assets/styles/DronePopup.css";
 export default function DronePopup({
   drone,
   onClose,
@@ -26,7 +26,7 @@ export default function DronePopup({
           </div>
           <div>
             <p>Flight Time</p>
-            <p>{drone.flightTime}</p>
+            <p>{drone.flightTime ?? "00:00:00"}</p>
           </div>
         </div>
       </div>

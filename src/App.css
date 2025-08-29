@@ -12,14 +12,6 @@
   background-color: #2c2c3e; /* Slightly lighter dark for sidebar */
 }
 
-/* Main content column */
-.main-content {
-  flex: 1; /* Take remaining width beside sidebar */
-  display: flex;
-  flex-direction: column; /* Header -> Page -> Footer */
-  height: 100vh;
-}
-
 /* Header styling */
 .header {
   height: 60px;
@@ -29,39 +21,6 @@
   padding-left: 20px;
   flex-shrink: 0; /* Do not shrink */
   color: #fff;
-}
-
-/* Footer styling */
-.footer {
-  height: 50px;
-  background-color: #2c2c3e; /* Dark footer */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0; /* Do not shrink */
-  color: #fff;
-}
-
-/* Page content: takes remaining vertical space */
-.page-content {
-  flex: 1; /* Fill remaining space */
-  position: ;
-  top: 63px;
-  left: 46px;
-  right: 0px;
-  bottom: 0px;
-  width: auto;
-  background-color: #1e1e2f; /* Dark background for content */
-  color: #fff; /* Text color for readability */
-}
-
-/* Optional: center content inside root */
-#root {
-  position: relative;
-  top: 95px;
-  left: 158px;
-  right: 0px;
-  bottom: 0px;
 }
 
 /* Other styles (logo, card, etc.) remain unchanged */
@@ -95,7 +54,7 @@
 
 .card {
   padding: 2em;
-  background-color: #2c2c3e; /* Dark card background */
+  background-color: #2c2c3e;
   color: #fff;
   border-radius: 8px;
 }
@@ -108,4 +67,32 @@
   flex: 1;
   height: 100%;
   width: 100%;
+}
+
+#root,
+body,
+html {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main-content {
+  .page-content {
+    flex: 1;
+    position: relative;
+    top: 102px;
+    left: 166px;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    background-color: #1e1e2f;
+    color: #fff;
+  }
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }

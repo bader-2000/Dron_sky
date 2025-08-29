@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWebSocket } from "./useDroneWebSocket.ts";
 import { transformGeoJSONToDrones } from "../utils/dataTransform";
 import type { Drone } from "../utils/droneTypesData";
@@ -6,7 +6,6 @@ import type { Drone } from "../utils/droneTypesData";
 /**
  * Calculate the yaw (rotation angle) in degrees
  * between two geographic coordinates.
- *
  * @param from - Starting coordinate [longitude, latitude]
  * @param to - Ending coordinate [longitude, latitude]
  * @returns Yaw angle in degrees (0-360)
@@ -19,11 +18,15 @@ const calculateYaw = (from: [number, number], to: [number, number]): number => {
 };
 
 /**
- * Custom hook to manage drone data.
- * Listens to WebSocket messages, transforms data,
- * updates drones state with path history and calculates yaw.
+ * Custom hook to manage and track drone data.
+ * Listens to WebSocket messages, transforms incoming data,
+ * updates the drone list with history and yaw calculation,
+ * and supports external reload via reloadKey.
+ *
+ * @param reloadKey - A number used to trigger a reset of the drone data.
+ * @returns An array of Drone objects with updated paths and yaw.
  */
-export function useDronesData() {
+export function useDronesData(reloadKey: number) {
   const [drones, setDrones] = useState<Drone[]>([]);
 
   useWebSocket({
@@ -43,18 +46,15 @@ export function useDronesData() {
             const oldDrone = updatedList[index];
             const lastCoord = oldDrone.path?.slice(-1)[0];
 
-            // Check if the drone has actually moved significantly
             const hasMoved =
               !lastCoord ||
               Math.abs(lastCoord[0] - newCoord[0]) > 1e-6 ||
               Math.abs(lastCoord[1] - newCoord[1]) > 1e-6;
 
-            // Update path only if moved
             const newPath = hasMoved
               ? [...(oldDrone.path ?? []), newCoord]
               : oldDrone.path ?? [];
 
-            // Calculate new yaw based on movement direction
             let calculatedYaw = oldDrone.yaw;
             if (lastCoord) {
               calculatedYaw = calculateYaw(lastCoord, newCoord);
@@ -67,7 +67,7 @@ export function useDronesData() {
               yaw: calculatedYaw,
             };
           } else {
-            // New drone, initialize path and yaw (default to 0 if not provided)
+            // New drone entry
             updatedList.push({
               ...newDrone,
               path: [newCoord],
@@ -80,6 +80,11 @@ export function useDronesData() {
       });
     },
   });
+
+  // When reloadKey changes, reset the drone list
+  useEffect(() => {
+    setDrones([]);
+  }, [reloadKey]);
 
   return drones;
 }

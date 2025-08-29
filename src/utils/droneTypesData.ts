@@ -10,6 +10,7 @@ export interface Drone {
   lon: number;
   yaw: number;
   altitude: number;
+  startTime?: number;
   flightTime: string;
   path: number[][];
 }
